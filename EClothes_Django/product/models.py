@@ -58,7 +58,7 @@ class Product(models.Model):
             else:
                 return ''
             
-    def make_thumbnail(self, image, size = (300,300)):
+    def make_thumbnail(self, image, size = (300,200)):
         img = Image.open(image)
         img.convert('RGB')
         img.thumbnail(size)
