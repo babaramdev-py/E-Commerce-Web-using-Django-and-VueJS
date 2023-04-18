@@ -10,3 +10,5 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 # Djoser provides DRF views to handle basic actions such as 
 # registration, login, logout, account auth etc
+
+# Comment 1
