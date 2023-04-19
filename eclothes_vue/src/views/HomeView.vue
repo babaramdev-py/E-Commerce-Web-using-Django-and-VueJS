@@ -85,3 +85,7 @@ export default {
 
 </style>
 
+<!-- get_absolute_url in DRF is being used here to route to that link, after routing there, 
+  we basically make calls using axios to the back end
+  after those calls are made, we render them in the front end using a data structure like an object
+ -->
