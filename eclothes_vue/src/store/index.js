@@ -34,6 +34,9 @@ export default createStore({
       }
       // after incrementing quantity, we're modifying local cart variable
       localStorage.setItem('cart',JSON.stringify(state.cart))
+    },
+    setIsLoading(state,status){
+      state.isLoading = status
     }
 
   },

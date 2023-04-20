@@ -4,7 +4,7 @@ from .serializers import ProductSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Product
-
+# import time
 
 # Generic List Built in DRF to list the ProductList
 class LatestProductList(APIView):
@@ -24,6 +24,7 @@ class ProductDetail(APIView):
     def get(self,request,category_slug,product_slug,format=None):
         product = self.get_object(category_slug,product_slug)
         serializer = ProductSerializer(product)
+        # time.sleep(3)
         return Response(serializer.data)
         
 
