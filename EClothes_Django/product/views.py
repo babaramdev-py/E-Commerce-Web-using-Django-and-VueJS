@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer,CategorySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Product
+from .models import Product, Category 
 # import time
 
 # Generic List Built in DRF to list the ProductList
@@ -28,3 +28,20 @@ class ProductDetail(APIView):
         return Response(serializer.data)
         
 
+class CategoryDetail(APIView):
+    def get_object(self,category_slug):
+        try:
+            return Category.objects.get(slug=category_slug) # this will return all the details 
+            # of the matching slugs of the product in the url. eg /winter/wool-gloves
+        except Category.DoesNotExist:
+            raise Http404 
+    
+    def get(self,request,category_slug,format=None):
+        category = self.get_object(category_slug)
+        serializer = CategorySerializer(category)
+        # time.sleep(3)
+        return Response(serializer.data)
+            
+
+
+    
