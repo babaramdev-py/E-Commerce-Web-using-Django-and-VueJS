@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Product from '../views/Product.vue'
 import Category from '../views/Category.vue'
+import Search from '../views/Search.vue'
 const routes = [
   {
     path: '/',
@@ -17,6 +18,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
+    path : '/search',
+    name: 'Search',
+    component: Search
+  },
+  {
     path: '/:category_slug',
     name: 'Category',
     component: Category
@@ -26,6 +32,7 @@ const routes = [
     name: 'Product',
     component: Product
   },
+
   
 ]
 
