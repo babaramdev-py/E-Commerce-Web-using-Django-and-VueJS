@@ -48,7 +48,7 @@ class CategoryDetail(APIView):
 @api_view(['POST'])
 def search(request):
     query = request.data.get('query','')
-
+    print(query)
     if query:
         products  = Product.objects.filter(Q(name__icontains=query)|Q(description__icontains=query))
         serializer = ProductSerializer(products,many=True)

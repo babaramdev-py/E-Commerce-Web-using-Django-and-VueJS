@@ -29,7 +29,7 @@ export default {
         document.title = 'Search | EClothes'
         console.log("modunted");
 
-        let uri = window.location.search.substring(1)
+        let uri = window.location.search
         console.log(uri)
         let params = new URLSearchParams(uri)
 
