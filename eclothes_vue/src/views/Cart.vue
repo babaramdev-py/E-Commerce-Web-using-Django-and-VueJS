@@ -22,16 +22,27 @@
                         <CartItem v-for = "item in cart.items"
                             :key = "item.product.id"
                             :initialItem = "item"
+                            v-on:removeFromCart="removeFromCart"
                         />
 
                     </tbody>
                 </table>
                 <p v-else>You don't have any items in your cart</p>
             </div>
+            
+        </div>
+        <div class="columns mt-6">
             <div class="column is-9"></div>
-            <div class="column is-3 box">
-                <h2 class="subtitle">Total</h2>
+            <div class="column is-3 box is-dark">
+                <h1 class="subtitle is-size-3">Total</h1>
+                <hr class="is-dark">
                 <div class="columns is-multiline">
+                    <div class="column is-6">
+                        <h1 class="subtitle is-size-5">Cost</h1> 
+                    </div>
+                    <div class="column is-6">
+                        <h1 class="subtitle is-size-5">Items</h1>
+                    </div>
                     <div class="column is-6">
                         <h3>{{ cartTotalPrice.toFixed(2) }}$</h3> 
                     </div>
@@ -43,7 +54,6 @@
                 <router-link to="/cart/checkout" class="button is-dark">Proceeed to Check Out</router-link>
             </div>
         </div>
-
     </div>
 
 
@@ -69,6 +79,13 @@ export default{
     },
     mounted() {
         this.cart = this.$store.state.cart
+        console.log(this.cart)
+        document.title = 'EClothes | Cart'
+    },
+    methods: {
+        removeFromCart(item){
+            this.cart.items = this.cart.items.filter(i => i.product.id !== item.product.id)
+        }
     },
     computed: {
         cartTotalLength(){
