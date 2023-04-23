@@ -15,36 +15,39 @@
 
 <script>
 
-export default{
+export default {
     name: 'CartItem',
-    props:{
+    props: {
         initialItem: Object,
     },
-    data(){
+    data() {
         return {
             item: this.initialItem,
+            // props in VueJS are passed by reference, so when 
+            // we update value in child component, it gets reflected in parent
         }
     },
     methods: {
-        getItemTotal(item){
+        getItemTotal(item) {
             return item.quantity * item.product.price
         },
-        decrementQuantity(item){
+        decrementQuantity(item) {
             item.quantity = item.quantity - 1;
-            if(item.quantity === 0){
-                this.$emit('removeFromCart',item)
+            if (item.quantity === 0) {
+                this.$emit('removeFromCart', item)
             }
             this.updateCart()
         },
-        incrementQuantity(item){
+        incrementQuantity(item) {
             item.quantity = item.quantity + 1;
             this.updateCart()
+            console.log(this.$store.state.cart)
         },
-        updateCart(){
-            localStorage.setItem('cart',JSON.stringify(this.$store.state.cart))
+        updateCart() {
+            localStorage.setItem('cart', JSON.stringify(this.$store.state.cart))
         },
-        removeFromCart(item){
-            this.$emit('removeFromCart',item)
+        removeFromCart(item) {
+            this.$emit('removeFromCart', item)
             this.updateCart()
         }
     }

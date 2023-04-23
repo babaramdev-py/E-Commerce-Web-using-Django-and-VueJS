@@ -78,8 +78,8 @@ export default{
         }
     },
     mounted() {
-        this.cart = this.$store.state.cart
-        console.log(this.cart)
+        this.cart = this.$store.state.cart // both state.cart and data.cart point to
+        // the same memory location.
         document.title = 'EClothes | Cart'
     },
     methods: {
@@ -106,3 +106,13 @@ export default{
 
 
 </script>
+
+<!-- 
+    Two things to keep in mind:
+    1.) Objects and arrays in Vue.js and VueX are passed by reference
+    so 
+        this.cart = this.$store.state.cart line basically links the two
+        from component to the store as we are passing down object from 
+        store down to component
+    2.) Even Props in VueJS and Vuex are passed by reference.
+ -->

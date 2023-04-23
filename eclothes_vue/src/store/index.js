@@ -24,6 +24,7 @@ export default createStore({
     addToCart(state, item){
       const exists = state.cart.items.filter(i => i.product.id === item.product.id) // Check if the item is already in cart
       console.log(exists[0])
+      console.log(state.cart.items)
       if(exists.length){
         // if already in the cart, increase quantity
         exists[0].quantity = parseInt(exists[0].quantity) + parseInt(item.quantity)
