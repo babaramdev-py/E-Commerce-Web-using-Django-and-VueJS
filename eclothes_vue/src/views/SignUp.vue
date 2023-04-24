@@ -3,7 +3,7 @@
         <div class="columns">
             <div class="column is-4 is-offset-4 box mt-6">
 
-                <h1 class="title">Sign Up</h1>
+                <h1 class="title is-2 has-text-centered mb-4">Sign Up</h1>
                 <form @submit.prevent="submitForm">
 
                     <div class="field">
@@ -62,6 +62,9 @@ export default {
             password2: '',
             errors: [],
         }
+    },
+    mounted() {
+        document.title = 'EClothes | Sign Up'
     },
     methods: {
         submitForm() {

@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -82,6 +84,13 @@ export default {
   },
   beforeCreate() {
     this.$store.commit('initialiseStore')
+    const token = this.$store.state.token // checks authentication and keeps the status active + used const so user can't change it.
+    if(token){
+      axios.defaults.headers.common['Authorization'] = "Token" + token
+    }
+    else{
+      axios.defaults.headers.common['Authorization'] = ""
+    }
   },
   mounted() {
     this.cart = this.$store.state.cart
@@ -145,3 +154,5 @@ export default {
   }
 }
 </style>
+
+// Authentication Done!

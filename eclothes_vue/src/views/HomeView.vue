@@ -48,7 +48,7 @@ export default {
   // lifecyclehooks
   mounted() {
     this.getLatestProducts()
-    document.title = 'Home | EClother'
+    document.title = 'EClothes | Home'
   },
   methods: {
     async getLatestProducts() {
