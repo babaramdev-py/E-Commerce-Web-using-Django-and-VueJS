@@ -34,7 +34,9 @@ export default {
     name: "Category",
     data() {
         return {
-            category: {}
+            category: {
+                products: []
+            }
         };
     },
     components: {

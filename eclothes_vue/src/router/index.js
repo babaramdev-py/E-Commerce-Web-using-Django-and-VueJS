@@ -4,11 +4,18 @@ import Product from '../views/Product.vue'
 import Category from '../views/Category.vue'
 import Search from '../views/Search.vue'
 import Cart from '../views/Cart.vue'
+import SignUp from '../views/SignUp.vue'
+import LogIn from '../views/LogIn.vue'
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/log-in',
+    name: 'login',
+    component: LogIn
   },
   {
     path: '/about',
@@ -29,6 +36,11 @@ const routes = [
     component: Cart
   },
   {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
     path: '/:category_slug',
     name: 'Category',
     component: Category
@@ -38,6 +50,7 @@ const routes = [
     name: 'Product',
     component: Product
   },
+  
 
   
 ]
