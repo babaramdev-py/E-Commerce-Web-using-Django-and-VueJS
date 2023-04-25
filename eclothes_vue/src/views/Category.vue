@@ -1,5 +1,5 @@
 <template>
-    <div class="page-category">
+    <div class="page-category animate__animated animate__bounceInUp">
         <div class="columns is-multiline">
             <div class="column is-12">
                 <h2 class="is-size-2 has-text-centered">{{ category.name }} Products</h2>

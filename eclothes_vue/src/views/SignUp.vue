@@ -1,5 +1,5 @@
 <template>
-    <div class="page-sign-up">
+    <div class="page-sign-up animate__animated animate__bounceInUp">
         <div class="columns">
             <div class="column is-4 is-offset-4 box mt-6">
 
@@ -98,7 +98,8 @@ export default {
                             dismissible: true,
                             pauseOnHover: true,
                             duration: 5000,
-                            position: 'bottom-right'
+                            position: 'top-center',
+                            animate: { in: 'fadeInDownBig', out: 'fadeOutUpBig' }
                         })
                         this.$router.push('/log-in') // Had a horrible bug on this line, a spelling typo
                     })

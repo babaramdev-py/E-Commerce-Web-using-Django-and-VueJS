@@ -1,6 +1,6 @@
 <template>
     <div class = "page-product">
-        <div class="columns is-multiline">
+        <div class="columns is-multiline animate__animated animate__bounceInLeft">
 
             <div class="column is-9">
                 <!-- <figure class="image mb-6"> -->

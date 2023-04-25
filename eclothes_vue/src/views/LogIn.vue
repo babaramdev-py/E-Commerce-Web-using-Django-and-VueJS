@@ -1,5 +1,5 @@
 <template>
-        <div class="page-log-in">
+        <div class="page-log-in animate__animated animate__bounceInDown">
         <div class="columns">
             <div class="column is-4 is-offset-4 box mt-6">
 
@@ -46,7 +46,7 @@
 
 <script>
 import axios from 'axios'
-
+import { toast } from 'bulma-toast'
 export default {
     name :'login',
     data(){
@@ -72,12 +72,22 @@ export default {
             await axios
                     .post('api/v1/token/login/',formData) // post the login data to back end /token/login
                     .then(response => {
+                        toast({
+                            message: 'Logged In!',
+                            type: 'is-success',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            duration: 4000,
+                            position: 'bottom-center',
+                            animate: { in: 'fadeInDownBig', out: 'fadeOutUpBig' }
+                        })
                         const token = response.data.auth_token //equate JSON data's auth_token part = token
                         this.$store.commit('setToken',token)
                         axios.defaults.headers.common["Authorization"] = "Token " + token
                         localStorage.setItem("token", token)
                         const toPath = this.$route.query.to || '/cart'
                         this.$router.push(toPath)
+
 
                     })
                     .catch(error =>{

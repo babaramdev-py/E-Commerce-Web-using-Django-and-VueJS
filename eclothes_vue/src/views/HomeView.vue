@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home animate__animated animate__bounceInRight">
     <section class="hero is-medium is-dark mb-6 is-rounded">
       <div class="hero-body has-text-centered">
         <p class="title mb-6">

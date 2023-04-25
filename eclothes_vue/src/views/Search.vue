@@ -1,5 +1,5 @@
 <template>
-    <div class="page-search">
+    <div class="page-search animate__animated animate__bounceInDown">
         <div class="columns is-multiline">
             <div class="column is-12">
                 <h1 class="title">Search</h1>
