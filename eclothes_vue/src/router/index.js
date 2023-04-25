@@ -7,6 +7,7 @@ import Cart from '../views/Cart.vue'
 import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
 import MyAccount from '../views/MyAccount.vue'
+import Checkout from '../views/Checkout.vue'
 import store from '../store'
 const routes = [
   {
@@ -29,12 +30,13 @@ const routes = [
   },
   {
     path:'/my-account',
-    name: 'about',
+    name: 'MyAccount',
     component: MyAccount, // append meta data to guard it via authentication
     meta : {
       requireLogin: true
     }
   },
+  
   {
     path : '/search',
     name: 'Search',
@@ -44,6 +46,14 @@ const routes = [
     path : '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path:'/cart/checkout',
+    name: 'Checkout',
+    component: Checkout, // append meta data to guard it via authentication
+    meta : {
+      requireLogin: true
+    }
   },
   {
     path: '/sign-up',
@@ -71,7 +81,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-  //to log out be required to login
+  //to log out be required to login 
+  // loop through all the views and check this condition  
   if(to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated){
     next({name:'login',query: {to: to.path}});
   }else{
