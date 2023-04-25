@@ -1,5 +1,5 @@
 <template>
-    <div class="page-checkout animate__animated animate__bounceIn">
+    <div class="page-checkout animate__animated animate__bounceInUp">
         <div class="columns is-multiline">
             <div class="column is-12">
                 <h1 class="title">Check Out</h1>
