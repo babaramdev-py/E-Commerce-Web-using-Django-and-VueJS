@@ -37,7 +37,8 @@
                 </form>
                 <hr>
                 <h2 class="subtitle mb-2">Don't have an account? Sign Up Here</h2>
-                <button class="button is-link is-light"><router-link to="/sign-up">Sign Up</router-link></button>
+                <router-link to="/sign-up"><button class="button is-link is-light">Sign Up</button> </router-link>
+                
                 <hr>
             </div>
         </div>

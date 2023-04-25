@@ -44,7 +44,7 @@
                 </form>
                 <hr>
                 <h2 class="subtitle mb-2">Have an account? Login Instead</h2>
-                <button class="button is-link is-light"><router-link to="/log-in">Log in </router-link></button>
+                <router-link to="/log-in"><button class="button is-link is-light">Log in</button> </router-link>
             </div>
         </div>
     </div>

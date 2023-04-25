@@ -6,6 +6,8 @@ import Search from '../views/Search.vue'
 import Cart from '../views/Cart.vue'
 import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
+import MyAccount from '../views/MyAccount.vue'
+import store from '../store'
 const routes = [
   {
     path: '/',
@@ -24,6 +26,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path:'/my-account',
+    name: 'about',
+    component: MyAccount, // append meta data to guard it via authentication
+    meta : {
+      requireLogin: true
+    }
   },
   {
     path : '/search',
@@ -60,4 +70,20 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to,from,next)=>{
+  //to log out be required to login
+  if(to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated){
+    next({name:'login',query: {to: to.path}});
+  }else{
+    next() //if logged in, then do nothing, simply log out
+  }
+})
+
 export default router
+
+// Setting up myaccount page logic explained
+/* 
+  Add router card
+
+
+*/
