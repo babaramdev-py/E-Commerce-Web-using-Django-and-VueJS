@@ -9,6 +9,7 @@ import LogIn from '../views/LogIn.vue'
 import MyAccount from '../views/MyAccount.vue'
 import Checkout from '../views/Checkout.vue'
 import store from '../store'
+import Success from '../views/Success.vue'
 const routes = [
   {
     path: '/',
@@ -41,6 +42,11 @@ const routes = [
     path : '/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path : '/success',
+    name: 'Success',
+    component: Success
   },
   {
     path : '/cart',

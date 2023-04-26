@@ -46,7 +46,7 @@ class Product(models.Model):
         if self.image:
             return "http://127.0.0.1:8000" + self.image.url
         return ''
-    
+
     def get_thumbnail(self):
         if self.thumbnail:
             return "http://127.0.0.1:8000" + self.thumbnail.url
@@ -57,16 +57,30 @@ class Product(models.Model):
                 return "http://127.0.0.1:8000" + self.thumbnail.url
             else:
                 return ''
-            
-    def make_thumbnail(self, image, size = (300,200)):
+
+    def make_thumbnail(self, image, size=(300, 200)):
         img = Image.open(image)
         img.convert('RGB')
         img.thumbnail(size)
 
         thumb_io = BytesIO()
-        img.save(thumb_io,'JPEG',quality = 85)
+        img.save(thumb_io, 'JPEG', quality=85)
 
-        thumbnail = File(thumb_io,name = image.name)
+        thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
 
+
+class Orders(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=100)
+    place = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    paid_amount = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name

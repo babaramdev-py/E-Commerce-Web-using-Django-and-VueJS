@@ -58,7 +58,12 @@ export default createStore({
       // on logging out, deactivate the token
       state.token = ''
       state.isAuthenticated = false
-    }
+    },
+    clearCart(state) {
+      state.cart = { items: [] }
+
+      localStorage.setItem('cart', JSON.stringify(state.cart))
+    },
 
   },
   actions: {

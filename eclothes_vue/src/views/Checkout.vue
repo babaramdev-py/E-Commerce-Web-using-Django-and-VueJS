@@ -98,7 +98,7 @@
                 </div>
                 <template v-if="cartTotalLength">
                     <hr>
-                    <button class="button is-dark" @click="submitForm">Proceed to Payment</button>
+                    <button class="button is-dark" @click="submitForm">Place The Order</button>
                 </template>
             </div>
 
@@ -108,6 +108,7 @@
 
 <script>
 import axios from 'axios'
+import { toast } from 'bulma-toast'
 export default {
     name: 'Checkout',
     data() {
@@ -115,8 +116,6 @@ export default {
             cart: {
                 items: []
             },
-            stripe: {},
-            card: {},
             first_name: '',
             last_name: '',
             email: '',
@@ -124,39 +123,81 @@ export default {
             address: '',
             zipcode: '',
             place: '',
+            paid_amount: '',
             errors: [],
         }
     },
     mounted() {
         document.title = 'EClothes | Checkout'
         this.cart = this.$store.state.cart
+        this.total()
     },
     methods: {
         getItemTotal(item) {
             return item.quantity * item.product.price
         },
-        submitForm(){
+        total() {
+            this.paid_amount = this.cart.items.reduce((acc, curVal) => {
+                return acc += curVal.product.price * curVal.quantity
+            }, 0)
+            console.log(this.paid_amount)
+        },
+        submitForm() {
             this.errors = []
 
-            if(this.first_name === '')
-            {
+            if (this.first_name === '') {
                 this.errors.push('The first name field is missing')
             }
-            if(this.last_name === '')
-            {
+            if (this.last_name === '') {
                 this.errors.push('The last name field is missing')
             }
-            if(this.phone === '')
-            {
+            if (this.phone === '') {
                 this.errors.push('The phone is missing')
             }
-            if(this.address === '')
-            {
+            if (this.address === '') {
                 this.errors.push('The address field is missing')
             }
-            if(this.place === '')
-            {
+            if (this.place === '') {
                 this.errors.push('The place field is missing')
+            }
+            if (!this.errors.length) {
+                let formdata = {
+                    "first_name": this.first_name,
+                    "last_name": this.last_name,
+                    "email": this.email,
+                    "address": this.address,
+                    "zipcode": this.zipcode,
+                    "place": this.place,
+                    "phone": this.phone,
+                    "paid_amount": this.paid_amount
+                }
+                axios.post('api/v1/orders/', formdata)
+                    .then(response => {
+                        toast({
+                            message: 'Order Placed!',
+                            type: 'is-success',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            duration: 4000,
+                            position: 'bottom-center',
+                            animate: { in: 'fadeInDownBig', out: 'fadeOutUpBig' }
+                        })
+                        this.$store.commit('clearCart')
+                        this.$router.push('/success').then(() => { this.$router.go() })
+
+                    })
+                    .catch(error => {
+                        toast({
+                            message: 'Error while placing the order',
+                            type: 'is-warning',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            duration: 4000,
+                            position: 'top-center',
+                            animate: { in: 'fadeInUpBig', out: 'fadeOutDownBig' }
+                        })
+                        console.log(error)
+                    })
             }
         }
     },

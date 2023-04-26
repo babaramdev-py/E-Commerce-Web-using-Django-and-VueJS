@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.db.models import Q
 from django.http import Http404
-from .serializers import ProductSerializer,CategorySerializer
+from .serializers import ProductSerializer,CategorySerializer, OrdersSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Product, Category 
+from .models import Product, Category, Orders 
 from rest_framework.decorators import api_view
 # import time
 
@@ -54,3 +54,16 @@ def search(request):
         serializer = ProductSerializer(products,many=True)
         return Response(serializer.data)
     return Response({"products":[]})
+
+class OrdersView(APIView):
+    def get(self, request):
+        orders = Orders.objects.all().values()
+        serializer = OrdersSerializer(orders,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = OrdersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
