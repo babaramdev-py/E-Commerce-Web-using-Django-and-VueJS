@@ -36,8 +36,9 @@
 
 
         <div class="navbar-end">
-          <a href="/summer/" class="navbar-item">Summmer</a>
-          <a href="/winter/" class="navbar-item">Winter</a>
+          <router-link to="/summer" class="navbar-item">Summer</router-link>
+          <router-link to="/winter" class="navbar-item">Winter</router-link>
+
 
           <div class="navbar-item">
             <div class="buttons">

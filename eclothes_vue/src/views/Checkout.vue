@@ -183,7 +183,7 @@ export default {
                             animate: { in: 'fadeInDownBig', out: 'fadeOutUpBig' }
                         })
                         this.$store.commit('clearCart')
-                        this.$router.push('/success').then(() => { this.$router.go() })
+                        this.$router.push('/success')
 
                     })
                     .catch(error => {
