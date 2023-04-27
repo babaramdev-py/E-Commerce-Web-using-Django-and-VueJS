@@ -15,20 +15,22 @@
       <div class="navbar-menu" id="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
         <div class="navbar-start">
           <div class="navbar-item">
-            <form  method="get" action="/search">
+            <form  method="get">
               <div class="field has-addons">
                 <div class="control">
-                  <input type="text" name="query" class="input" placeholder="Search Here">
+                  <router-link to="/search">
+                    <input type="text" name="query" class="input" placeholder="Search Here">
+                  </router-link>
                 </div>
 
-                <div class="control">
+                <!-- <div class="control">
                   <button class="button is-success">
                     <span class="icon">
                       <i class="fas fa-search">
                       </i>
                     </span>
                   </button>
-                </div>
+                </div> -->
               </div>
             </form>
           </div>
