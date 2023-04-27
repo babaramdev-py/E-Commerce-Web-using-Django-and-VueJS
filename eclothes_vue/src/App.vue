@@ -18,7 +18,7 @@
             <form  method="get">
               <div class="field has-addons">
                 <div class="control">
-                  <router-link to="/search">
+                  <router-link to="/search" @submit.prevent>
                     <input type="text" name="query" class="input" placeholder="Search Here">
                   </router-link>
                 </div>
