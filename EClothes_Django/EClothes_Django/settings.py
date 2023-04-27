@@ -45,7 +45,9 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080"
+    "http://localhost:8080",
+    "https://644a303bb3f63460f88ecee7--dapper-froyo-ae68d5.netlify.app",
+    "https://vedkorlavue.netlify.app"
 ]
 
 MIDDLEWARE = [
